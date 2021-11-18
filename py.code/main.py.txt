@@ -1,0 +1,56 @@
+#implementing Voice Assistant
+ 
+import speech_recognition as sr
+import pyttsx3 as pyt
+import pywhatkit
+import webbrowser
+import subprocess
+import pytime
+
+
+listner = sr.Recognizer()
+speaker = pyt.init()
+name = 'Ok Goolge'
+
+
+def speak(text):
+    speaker.say(text)
+    speaker.runAndWait()
+
+
+speak("TRY SAYING")
+
+
+def take_command():
+    command = ''
+    try:
+        with sr.Microphone() as source:
+            print('listening...')
+            voice = listner.listen(source)
+            command = listner.recognize_google(voice)
+            command = command.lower()
+            if name in command:
+                command = command.replace(name + ' ', ' ')
+
+    except:
+        print("check microphone")
+    return command
+
+
+while True:
+    user_command = take_command()
+    if 'close' in user_command:
+        speak('bye bye')
+        break
+    elif 'play a song' in user_command:
+        speak("playing a song")
+        pywhatkit.playonyt(user_command)
+    if 'open chrome' in user_command:
+        speak("opening chrome")
+        webbrowser.get("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe").open("https://google.com")
+    elif 'open notepad' in user_command:
+        speak("opening notepad")
+        path = r'path/to/your/file.txt'
+        subprocess.Popen(['notepad.exe'])
+
+

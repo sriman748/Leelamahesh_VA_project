@@ -1,0 +1,11 @@
+#Libraries used in code.
+
+1.	pip install pyaudio
+
+2.	pip install Speech_Recognition
+
+3.	pip install pywhatkit
+
+4.	pip install WebBrowser
+
+5.	pip install gtts
